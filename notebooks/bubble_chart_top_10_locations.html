@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"usermeta": {"embedOptions": {"theme": "dark"}}, "config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-45b76f7dac3eb2ad30ce0d393b026f7e"}, "mark": {"type": "circle", "size": 100}, "encoding": {"color": {"field": "Deaths", "scale": {"scheme": "reds"}, "type": "quantitative"}, "size": {"field": "Deaths", "scale": {"range": [10, 500]}, "title": "Number of Deaths", "type": "quantitative"}, "tooltip": [{"field": "location", "type": "nominal"}, {"field": "Deaths", "type": "quantitative"}], "x": {"field": "Deaths", "title": "Number of Deaths", "type": "quantitative"}, "y": {"field": "location", "sort": "-x", "title": "Location", "type": "nominal"}}, "height": 400, "params": [{"name": "param_21", "select": {"type": "interval", "encodings": ["x", "y"]}, "bind": "scales"}], "title": "Top 10 Locations with Highest Journalist Deaths since 1992", "width": 500, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-45b76f7dac3eb2ad30ce0d393b026f7e": [{"location": "Iraq", "Deaths": 193}, {"location": "Israel and the Occupied Palestinian Territory", "Deaths": 178}, {"location": "Syria", "Deaths": 145}, {"location": "Philippines", "Deaths": 96}, {"location": "Somalia", "Deaths": 73}, {"location": "Pakistan", "Deaths": 68}, {"location": "Mexico", "Deaths": 65}, {"location": "India", "Deaths": 61}, {"location": "Russia", "Deaths": 60}, {"location": "Algeria", "Deaths": 60}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
