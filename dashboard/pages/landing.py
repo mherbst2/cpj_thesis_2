@@ -20,8 +20,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App content
-st.title("Seeking Truth in A Time of War")
-st.write("Since 1992, the Committee to Protect Journalists has documented the killings of 1,687 journalists around the world. This dashboard explores the data from these tragic events.")
+st.title("Silencing Stories: The Legacy of Journalists")
+st.write("Since 1992, the Committee to Protect Journalists has documented the killings of 1,687 journalists around the world. My master's thesis, 'Seeking Truth in A Time of War,' tells the story of Jehad al-Saftawi, a Gaza photojournalist. Al-Saftawi's story shows how even though he escaped the bloodshed of Gaza, his past still haunts him in the United States. The dashboard is a tribute to all journalists who have lost their lives in the pursuit of truth and justice.")
 
 # Enable Altair dark theme
 alt.themes.enable("dark")
