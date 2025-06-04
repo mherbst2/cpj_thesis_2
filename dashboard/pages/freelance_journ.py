@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
     page_title="Seeking Truth in A Time of War",
     layout="wide"
-)
+) 
 
 # Custom CSS for styling
 st.markdown("""
@@ -20,8 +20,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App content
-st.title("Seeking Truth in A Time of War")
-st.subheader("By Michaela Herbst")
+st.title("The Dangers Freelance Journalists Face")
 st.markdown(
     """
     <style>
@@ -46,8 +45,7 @@ st.markdown(
 
 
 # Main content
-st.write("In Jehad al-Saftawi’s final year of trying to flee Gaza for a new life in the United States, sheer desperation consumed him. He even fleetingly entertained the impulsive idea of running to the Israel border. As a photographer and journalist, he no longer wanted to exist in a place without a free press and where danger and suspicions were ever-present.")
-st.text("")
+st.write("The Dangers Freelance Journalists Face")
 
 # Enable Altair dark theme
 alt.themes.enable("dark")

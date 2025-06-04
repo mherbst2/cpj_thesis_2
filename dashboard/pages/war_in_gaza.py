@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
     page_title="Seeking Truth in A Time of War",
     layout="wide"
-)
+) 
 
 # Custom CSS for styling
 st.markdown("""
@@ -20,7 +20,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # App content
-st.title("Category of Deaths")
+st.title("The War in Gaza and the Press")
 st.markdown(
     """
     <style>
@@ -45,7 +45,7 @@ st.markdown(
 
 
 # Main content
-st.write("category of deaths")
+st.write("The War in Gaza and The Press")
 
 # Enable Altair dark theme
 alt.themes.enable("dark")
