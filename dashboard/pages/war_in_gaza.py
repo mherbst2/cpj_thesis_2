@@ -45,7 +45,7 @@ st.markdown(
 
 
 # Main content
-st.write("The War in Gaza and The Press")
+st.write("On Oct. 7, 2023, Hamas, a nationalist political organization launched an attack killing about 1,200 people, most of them civilians, and led to more than 250 hostages being taken. The Israel-Palestine conflict dates back to t")
 
 # Enable Altair dark theme
 alt.themes.enable("dark")

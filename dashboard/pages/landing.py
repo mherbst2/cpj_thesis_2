@@ -12,7 +12,6 @@ st.set_page_config(
     page_title="Seeking Truth in A Time of War",
     layout="wide"
 )
-
 # Custom CSS for styling
 st.markdown("""
     <style>
@@ -26,13 +25,14 @@ st.markdown("""
 
 # App content
 st.title("Silencing Stories: The Legacy of Journalists")
+st.subheader("By Michaela Herbst")
 st.write("Journalism is an essential part of our demcoracy as it keeps those in power  accountable, informs citizens and acts as the unofficial fourth branch of government. The state of journalism is at risk due to increased threats by government officials and safety issues. Political leaders have called the press the enemy of the people. The Trump Administration has decided to choose which media organizations can be allowed in the White House press briefing room. By blocking media outlets that have been allowed in the White House for decades, he is further perpetuating the idea of confirmation bias.")
 st.text("")
 st.write("In order to do this profession ethically, journalists follow the core ten elements of journalism. Bill Kovach and Tom Rosenstiel are influential journalists who outlined these principles in their book, “The Elements of Journalism.” These include: (1) journalism's first obligation is to the truth, (2) loyalty to citizens, (3) verification, (4) maintaining independence, (5) monitors power, (6) provides a public forum, (7) has a purpose, (8) comprehensive, (9) exercise in personal conscience, and (10) holds responsibility. According to the United Nations, journalism continues to remain a deadly profession, “and nine times out of ten, the murder of a journalist is unresolved.” Journalists continue to seek truth in the midst of utter chaos that occurs around them.")
 st.text("")
 st.write("“Stop targeting truth and truth-tellers,” said Antonio Guterres, the United Nations Secretary-General. “As journalists stand up for truth, the world stands with them.”")
 st.text("")
-st.write("Since 1992, the Committee to Protect Journalists (CPJ) has documented the killings of 1,687 journalists around the world. The CPJ is an independent organization helps protect the rights of journalists by promoting the freedom of the press. They track whether journalists were murdered, died during crossfire or on a dangerous assignment. On average, about 140 journalists are killed monthly.")
+st.write("Since 1992, the Committee to Protect Journalists (CPJ) has documented the killings of 1,687 journalists around the world. The CPJ is an independent organization that helps protect the rights of journalists by promoting the freedom of the press. They track whether journalists were murdered, died during crossfire or on a dangerous assignment. On average, about 140 journalists are killed gloablly per month.")
 
 
 # Main content
@@ -73,8 +73,10 @@ else:
         year_selection
         ).properties(
         title=alt.TitleParams(
-            text='Journalists Killed Globally per Month',
-            color='white'  # Set title color to white
+            text='Journalists Killed Globally per Month from 1992-2025',
+            subtitle="The bars represent the number of journalists killed each month from 1992 to 2025. The data is filtered by the selected year.",
+            color='white',  # Set title color to white
+            subtitleColor='white'  # Set subtitle color to white
         ),
         width=800,
         height=400,
@@ -114,7 +116,7 @@ type_of_death_counts = type_of_death_counts.groupby('Type of Death', as_index=Fa
 
 type_of_death_counts_chart = alt.Chart(type_of_death_counts).mark_circle(
     opacity=0.8,
-    stroke='black',
+    stroke='white',
     strokeWidth=1,
     strokeOpacity=0.4
 ).encode(
@@ -125,19 +127,20 @@ type_of_death_counts_chart = alt.Chart(type_of_death_counts).mark_circle(
         .title('Number of Deaths')
         .axis(labelColor='white', titleColor='white'),  # Set X-axis text color to white
     alt.Size('Count:Q')
-        .scale(range=[0, 2500])
+        .scale(range=[50, 1000])  # Adjusted size range for better visibility
         .title('Deaths'),
-    alt.Color('Type of Death:N').legend(None),
-    tooltip=[],
-).properties(
-    width=800,
-    height=400,
-    title=alt.Title(
+        alt.Color('Type of Death:N').legend(None),
+        tooltip=[],
+    ).properties(
+        width=800,
+        height=400,
+        title=alt.Title(
         text="The Types of Deaths Journalists Endured from 1992-2025",
         subtitle="The size of the bubble represents the total death count for each type of death.",
-        anchor='start'
-    ),
-    background='#111',  # Set chart background to dark
+        anchor='start',
+        subtitleColor='white'  # Set subtitle color to white
+        ),
+        background='#111',  # Set chart background to dark
     padding={"top": 10, "bottom": 10, "left": 10, "right": 10}
 ).configure_axisY(
     domain=False,
@@ -186,7 +189,9 @@ top_10_locations_chart = alt.Chart(global_deaths).mark_bar().encode(
 ).properties(
     title=alt.TitleParams(
         text='Top 10 Locations with the Highest Number of Journalist Deaths since 1992',
-        color='white'  # Set title color to white
+        subtitle="The bars represent the number of journalists killed in each location from 1992 to 2025. The data is filtered to show only the top 10 locations with the highest number of deaths.",
+        color='white',  # Set title color to white
+        subtitleColor='white'  # Set subtitle color to white
     ),
     width=800,
     height=400,
