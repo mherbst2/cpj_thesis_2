@@ -26,13 +26,13 @@ st.markdown("""
 # App content
 st.title("Silencing Stories: The Legacy of Journalists")
 st.subheader("By Michaela Herbst")
-st.write("Journalism is an essential part of our demcoracy as it keeps those in power  accountable, informs citizens and acts as the unofficial fourth branch of government. The state of journalism is at risk due to increased threats by government officials and safety issues. Political leaders have called the press the enemy of the people. The Trump Administration has decided to choose which media organizations can be allowed in the White House press briefing room. By blocking media outlets that have been allowed in the White House for decades, he is further perpetuating the idea of confirmation bias.")
+st.write("Journalism is an essential part of our democracy as it keeps those in power  accountable, informs citizens and acts as the unofficial fourth branch of government. The dashboard is a tribute to all journalists who have lost their lives in the pursuit of truth and justice. The state of journalism is at risk due to increased threats by government officials and safety issues. Political leaders have called the press the enemy of the people. The Trump Administration has decided to choose which media organizations can be allowed in the White House press briefing room. By blocking media outlets that have been allowed in the White House for decades, he is further perpetuating the idea of confirmation bias.")
 st.text("")
 st.write("In order to do this profession ethically, journalists follow the core ten elements of journalism. Bill Kovach and Tom Rosenstiel are influential journalists who outlined these principles in their book, “The Elements of Journalism.” These include: (1) journalism's first obligation is to the truth, (2) loyalty to citizens, (3) verification, (4) maintaining independence, (5) monitors power, (6) provides a public forum, (7) has a purpose, (8) comprehensive, (9) exercise in personal conscience, and (10) holds responsibility. According to the United Nations, journalism continues to remain a deadly profession, “and nine times out of ten, the murder of a journalist is unresolved.” Journalists continue to seek truth in the midst of utter chaos that occurs around them.")
 st.text("")
 st.write("“Stop targeting truth and truth-tellers,” said Antonio Guterres, the United Nations Secretary-General. “As journalists stand up for truth, the world stands with them.”")
 st.text("")
-st.write("Since 1992, the Committee to Protect Journalists (CPJ) has documented the killings of 1,687 journalists around the world. The CPJ is an independent organization that helps protect the rights of journalists by promoting the freedom of the press. They track whether journalists were murdered, died during crossfire or on a dangerous assignment. On average, about 140 journalists are killed gloablly per month.")
+st.write("Since 1992, the Committee to Protect Journalists (CPJ) has documented the killings of 1,687 journalists around the world. The CPJ is an independent organization that helps protect the rights of journalists by promoting the freedom of the press. They track whether journalists were murdered, died during crossfire or on a dangerous assignment. On average, about 140 journalists are killed globally per month.")
 
 
 # Main content
@@ -66,7 +66,7 @@ else:
         ], axis=alt.Axis(labelAngle=45, titleColor='white', labelColor='white')),  # Rotate month labels by 45 degrees
         y=alt.Y('count():Q', title='Number of Deaths', axis=alt.Axis(titleColor='white', labelColor='white')),
         color=alt.Color('Month:O', legend=None),
-        tooltip=[]
+        tooltip=[]  # Add tooltip for month and count
         ).add_params(
         year_selection
         ).transform_filter(
@@ -113,7 +113,6 @@ type_of_death_counts['Type of Death'] = type_of_death_counts['Type of Death'].re
 )
 # Recalculate the counts after merging
 type_of_death_counts = type_of_death_counts.groupby('Type of Death', as_index=False).sum()
-
 type_of_death_counts_chart = alt.Chart(type_of_death_counts).mark_circle(
     opacity=0.8,
     stroke='white',
@@ -126,21 +125,20 @@ type_of_death_counts_chart = alt.Chart(type_of_death_counts).mark_circle(
     alt.X('Count:Q')
         .title('Number of Deaths')
         .axis(labelColor='white', titleColor='white'),  # Set X-axis text color to white
-    alt.Size('Count:Q')
-        .scale(range=[50, 1000])  # Adjusted size range for better visibility
+    alt.Size('Type of Death:N', scale=alt.Scale(domain=['Dangerous Assignment', 'Murder', 'Crossfire/Combat Related'], range=[800, 400, 400]), legend=None)
         .title('Deaths'),
-        alt.Color('Type of Death:N').legend(None),
-        tooltip=[],
-    ).properties(
-        width=800,
-        height=400,
-        title=alt.Title(
+    alt.Color('Type of Death:N').legend(None),
+    tooltip=[],  # Add tooltip for type of death and count
+).properties(
+    width=800,
+    height=400,
+    title=alt.Title(
         text="The Types of Deaths Journalists Endured from 1992-2025",
         subtitle="The size of the bubble represents the total death count for each type of death.",
         anchor='start',
         subtitleColor='white'  # Set subtitle color to white
-        ),
-        background='#111',  # Set chart background to dark
+    ),
+    background='#111',  # Set chart background to dark
     padding={"top": 10, "bottom": 10, "left": 10, "right": 10}
 ).configure_axisY(
     domain=False,
@@ -171,16 +169,16 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
+st.write("The top locations with the highest number of journalist deaths include: Iraq, Israel and the Occupied Palestinian Territory, Syria, Philippines, Somalia, Pakistan, Mexico, India, Russia and Algeria. On a global level, the location that experienced the highest number of journalist deaths was Iraq with 193 deaths. The second was Israel and the Occupied Palestinian Territory with 178 deaths.")
 
 # Add a bar chart with the top 10 locations with the most journalist deaths
 global_deaths = cpj.groupby('location').size().reset_index(name='Deaths').sort_values(by='Deaths', ascending=False)
 top_10_locations = global_deaths.head(10)
-
 top_10_locations_chart = alt.Chart(global_deaths).mark_bar().encode(
     x=alt.X('Deaths:Q', title='Number of Deaths', axis=alt.Axis(titleColor='white', labelColor='white')),
     y=alt.Y('location:N', title='Location', sort='-x', axis=alt.Axis(titleColor='white', labelColor='white')),  # Sort by number of deaths
     color=alt.Color('Deaths:Q', scale=alt.Scale(scheme='blues'), legend=None),  # Light-to-dark blue shades
-    tooltip=[]  # Add hover tooltip
+    tooltip=[]  # Add hover tooltip for location and number of deaths
 ).transform_window(
     rank='rank(Deaths)',
     sort=[alt.SortField('Deaths', order='descending')]
@@ -207,7 +205,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.write("On Oct. 7, 2023, Hamas a nationalist political organization launched an attack on Israel, continuing the ongoing Israeli-Palestinian conflict. My master's thesis, 'Seeking Truth in A Time of War,' tells the story of Jehad al-Saftawi, a Gaza photojournalist. Al-Saftawi's story shows how even though he escaped the bloodshed of Gaza, his past still haunts him in the United States. The dashboard is a tribute to all journalists who have lost their lives in the pursuit of truth and justice.")
+st.write("On Oct. 7, 2023, Hamas a nationalist political organization, launched an attack on Israel, continuing the ongoing Israeli-Palestinian conflict. My master's thesis, 'Seeking Truth in A Time of War,' tells the story of Jehad al-Saftawi, a Gaza photojournalist. Al-Saftawi's story shows how even though he escaped the bloodshed of Gaza, his past still haunts him in the United States.")
 
 
 st.markdown(
